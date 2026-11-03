@@ -1,34 +1,100 @@
 @import "tailwindcss";
 
 :root {
-  --navy: #14213d;
-  --gold: #c19a5b;
-  --ink: #1f2937;
-  --muted: #6b7280;
-  --paper: #ffffff;
-  --page: #eef0f4;
+  --paper: #f4f1ea;
+  --paper-2: #ebe6db;
+  --ink: #17150f;
+  --ink-2: #4f4a41;
+  --ink-3: #6f695e;
+  --line: #d8d1c3;
+  --accent: #c2410c;
+  --accent-ink: #9a3412;
+  --accent-soft: #f8dccd;
+  --night: #17150f;
+  --night-ink: #f4f1ea;
+  --night-ink-2: #b9b2a4;
 }
 
 @theme inline {
-  --color-navy: var(--navy);
-  --color-gold: var(--gold);
-  --color-ink: var(--ink);
-  --color-muted: var(--muted);
   --color-paper: var(--paper);
-  --color-page: var(--page);
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --color-paper-2: var(--paper-2);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-night: var(--night);
+  --color-night-ink: var(--night-ink);
+  --color-night-ink-2: var(--night-ink-2);
+  --font-sans: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono-face), ui-monospace, monospace;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 body {
-  background: var(--page);
+  background: var(--paper);
   color: var(--ink);
+  font-feature-settings: "ss01", "cv11";
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+a {
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+}
+
+html {
+  scrollbar-color: var(--ink-3) var(--paper);
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
 }
 
 @media print {
-  body {
-    background: var(--paper);
+  @page {
+    margin: 14mm;
   }
+
+  body {
+    background: #fff;
+    font-size: 11pt;
+  }
+
   .no-print {
     display: none !important;
+  }
+
+  main * {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .print-break-avoid {
+    break-inside: avoid;
   }
 }
